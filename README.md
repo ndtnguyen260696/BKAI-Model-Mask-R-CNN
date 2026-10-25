@@ -1,4 +1,16 @@
 
+> **Maintained Research Repository**
+>
+> This repository is the actively maintained version of the
+> BKAI Mask R-CNN research project accompanying the
+> published Springer Nature article.
+>
+> Previous repository:
+> https://github.com/bkai-ndt-sdh231/BKAI-Model-Mask-R-CNN
+>
+> Current maintained repository:
+> https://github.com/ndtnguyen260696/BKAI-Model-Mask-R-CNN
+
 <div align="center">
 
 # An integrated mask R-CNN framework for concrete crack segmentation and skeleton-based quantification in automated infrastructure inspection

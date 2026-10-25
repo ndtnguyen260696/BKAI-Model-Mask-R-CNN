@@ -1,89 +1,264 @@
-# Concrete Crack Segmentation & Quantification with Mask R-CNN
 
-**Progressive M0–M4 Framework | Research Showcase & Code Repository**
+<div align="center">
+
+# An integrated mask R-CNN framework for concrete crack segmentation and skeleton-based quantification in automated infrastructure inspection
+
+### Official Research Repository | Springer Nature | 2026
 
 **Dat-Thanh Nguyen · Nhat-Quang Tran · Duc-Hoc Tran**
 
-*Journal of Building Pathology and Rehabilitation*, **11**, Article **228** (2026) · Springer Nature
+*Journal of Building Pathology and Rehabilitation*  
+**Volume 11, Article 228 (2026)**
 
-[**Read the published paper (DOI)**](https://doi.org/10.1007/s41024-026-00900-z) | [**BKAI research website**](https://bkai.b12sites.com/index)
+[![DOI](https://img.shields.io/badge/DOI-10.1007%2Fs41024--026--00900--z-blue)](https://doi.org/10.1007/s41024-026-00900-z)
+[![Paper](https://img.shields.io/badge/Read_Full_Paper-Springer_Nature-1769aa)](https://doi.org/10.1007/s41024-026-00900-z)
+![Year](https://img.shields.io/badge/Published-2026-success)
 
-**Keywords:** Concrete cracks · Mask R-CNN · ResNet-50-FPN · PointRend · Skeletonization · Structural health monitoring
+**Mask R-CNN | ResNet-50-FPN | PointRend | Crack Segmentation | Skeletonization**
+
+</div>
 
 ---
 
-## About this repository
+## 1. Research Overview
 
-This repository introduces an integrated Mask R-CNN framework for automated concrete crack segmentation and image-based geometric characterization. It accompanies the peer-reviewed paper published in *Journal of Building Pathology and Rehabilitation* (2026).
+Automated detection and characterization of concrete cracks are important for infrastructure inspection, structural condition assessment, and maintenance planning.
 
-**This README is a research showcase, not a replacement for the paper.** For complete experimental settings, statistical analysis, ablation results, and discussion, please [read the full journal article](https://doi.org/10.1007/s41024-026-00900-z).
+This research presents a progressive **Mask R-CNN framework (M0–M4)** that integrates instance-aware concrete crack segmentation, crack-oriented proposal adaptation, boundary refinement, morphological topology refinement, and skeleton-based geometric characterization.
 
-## Research highlights
+The framework is designed to improve the representation of irregular, elongated, and discontinuous crack patterns while supporting downstream quantitative analysis.
 
-- **Progressive instance-aware pipeline:** Mask R-CNN followed by crack-oriented proposals, fine-boundary refinement, topology refinement, and geometric characterization.
-- **Controlled evaluation:** Distinct experimental protocols for M0–M4 development and comparison with DeepLabV3+ and YOLOv8m-Seg.
-- **Practical demonstration:** BKAI Web/App presents crack masks, image-based measurements, visualization, and reporting.
+The proposed approach is evaluated through progressive model development and controlled comparison with established segmentation architectures. An associated **BKAI Web/App** demonstrates the application of the framework to image-based crack analysis, visualization, and inspection reporting.
 
-The contribution is the **systematic integration and evaluation** of established components, rather than claiming the individual algorithms as new inventions.
+> **About this repository:** This GitHub repository provides a concise introduction to the published research, selected experimental results, visual demonstrations, and associated code resources. For detailed methodology, experimental configurations, complete statistical analysis, and scientific discussion, please refer to the published journal article.
 
-## Proposed framework
+**[Read the Full Research Article on Springer Nature](https://doi.org/10.1007/s41024-026-00900-z)**
 
-![Progressive development of the M1–M4 framework](assets/images/bkai_paper_2026/fig06_progressive_m1_m4.png)
+---
 
-| Stage | Main purpose |
-| --- | --- |
-| **M0** | Baseline Mask R-CNN with ResNet-50 and FPN |
-| **M1** | Crack-oriented proposal adaptation |
-| **M2** | PointRend boundary refinement |
-| **M3** | Morphological topology refinement |
-| **M4** | Skeleton-based geometric characterization |
+## 2. Research Contributions
 
-**Measurement note:** The M4 outputs are image-domain crack descriptors. Length and width in pixels are not absolute physical measurements unless suitable scale information or calibration is available.
+The principal contributions of this study include:
 
-## Selected published results
+- **Progressive instance-aware crack segmentation:** Integration of crack-oriented proposal adaptation, PointRend boundary refinement, and morphological topology refinement within a Mask R-CNN framework.
 
-The paper uses **two separate experimental protocols**. The results below refer only to the **controlled TEST1007** comparison, not the augmented M0–M4 development dataset.
+- **Controlled experimental evaluation:** Assessment of successive model improvements and comparison against DeepLabV3+ and YOLOv8m-Seg using a consistent evaluation protocol.
 
-| Metric | M3 result (TEST1007) |
-| --- | ---: |
-| Precision | **88.69%** |
-| Recall | **84.07%** |
-| F1-score / Dice | **86.32%** |
-| Intersection over Union (IoU) | **75.94%** |
+- **Skeleton-based geometric characterization:** Extraction of crack centerlines and image-domain geometric descriptors to support crack-wise quantitative analysis.
 
-![Controlled model comparison on TEST1007](assets/images/bkai_paper_2026/fig20_test1007_comparison.png)
+- **Engineering-oriented integration:** Implementation of the research workflow in BKAI Web/App for crack visualization, analysis, and structured reporting.
 
-For statistical uncertainty, detailed ablation studies, and full comparison tables, see the [published paper](https://doi.org/10.1007/s41024-026-00900-z).
+The methodological contribution lies in the progressive integration and evaluation of established techniques rather than claiming independent invention of their underlying algorithms.
 
-## Visual demonstrations
+---
 
-### Concrete crack predictions
+## 3. Proposed Mask R-CNN Framework
 
-![Concrete crack detection and instance-mask examples](assets/images/bkai_paper_2026/fig15_crack_prediction_examples.png)
+The proposed framework progressively develops the baseline Mask R-CNN model through five configurations.
 
-### Progressive segmentation examples
+| Stage | Configuration | Primary Function |
+|:---:|---|---|
+| **M0** | Mask R-CNN Baseline | Instance segmentation using ResNet-50-FPN |
+| **M1** | Crack-Oriented Proposal Adaptation | Improve candidate-region representation for elongated cracks |
+| **M2** | PointRend Boundary Refinement | Refine uncertain crack boundaries |
+| **M3** | Morphological Topology Refinement | Improve mask continuity and suppress isolated artifacts |
+| **M4** | Skeleton-Based Geometric Characterization | Extract centerlines and image-domain geometric descriptors |
 
-![Qualitative comparison of M0 through M3](assets/images/bkai_paper_2026/fig17_m0_m3_qualitative_masks.png)
+### Progressive Framework Architecture
 
-## BKAI Web/App demonstration
+<div align="center">
 
-The BKAI prototype illustrates an engineering-oriented workflow from uploading images to visualizing predicted cracks and preparing structured inspection outputs. It should not be interpreted as independently validated physical measurement software.
+<img src="assets/images/bkai_paper_2026/fig06_progressive_m1_m4.png" alt="Progressive Mask R-CNN Framework M1 to M4" width="85%">
 
-![BKAI Web/App demonstration workflow](assets/images/bkai_paper_2026/fig21_bkai_web_workflow.png)
+*Progressive development of the proposed Mask R-CNN framework, illustrating the main processing stages from M1 to M4.*
 
-Project links: [BKAI website](https://bkai.b12sites.com/index) · [BKAI AI application repository](https://github.com/ndtnguyen260696/bkai-ai-app)
+</div>
 
-## Repository code and reproducibility
+The progressive design preserves an instance-aware processing pathway while addressing crack-specific challenges related to geometry, boundaries, topology, and downstream characterization.
 
-The repository contains research notebooks and supporting material. The availability and compatibility of pretrained weights, dataset access, dependencies, and complete reproduction commands must be checked against the actual files in the repository before use. No end-to-end reproducibility claim is made here.
+Detailed architectural configurations, mathematical formulations, and implementation considerations are presented in the published article.
 
-For an implementation overview, browse the repository's `Model/`, `notebooks/`, and `results/` directories as available. For full scientific specifications, refer to the paper.
+---
 
-## Publication and citation
+## 4. Dataset and Experimental Design
 
-**Nguyen, D.-T., Tran, N.-Q., & Tran, D.-H. (2026).** An integrated mask R-CNN framework for concrete crack segmentation and skeleton-based quantification in automated infrastructure inspection. *Journal of Building Pathology and Rehabilitation, 11*, Article 228.
+The study employs a curated multi-source concrete crack dataset comprising:
+
+| Dataset Characteristic | Description |
+|---|---|
+| Original curated images | 10,000 |
+| Crack images | 5,000 |
+| Non-crack images | 5,000 |
+| Input resolution | 640 × 640 pixels |
+| Annotation format | COCO-compatible instance segmentation |
+| Development dataset | Approximately 26,000 images including training augmentation |
+| Controlled comparison | Fixed TEST1007 evaluation subset |
+
+Two distinct experimental protocols were established.
+
+**Protocol 1 — Progressive Development**
+
+Evaluates the contributions of the successive Mask R-CNN configurations using training-only augmentation.
+
+**Protocol 2 — Controlled Cross-Model Comparison**
+
+Evaluates the proposed framework against established segmentation architectures using consistently prepared data and a fixed held-out test subset.
+
+These protocols serve different analytical purposes and their results should not be directly mixed.
+
+For dataset composition, annotation procedures, augmentation strategies, statistical characteristics, and experimental settings, consult the published article.
+
+---
+
+## 5. Selected Experimental Results
+
+The proposed M3 configuration achieved the following results under the controlled **TEST1007** protocol.
+
+<div align="center">
+
+| Evaluation Metric | M3 Result |
+|:---|---:|
+| **Precision** | **88.69%** |
+| **Recall** | **84.07%** |
+| **F1-score / Dice** | **86.32%** |
+| **Intersection over Union (IoU)** | **75.94%** |
+
+</div>
+
+### Comparison with Established Segmentation Models
+
+<div align="center">
+
+<img src="assets/images/bkai_paper_2026/fig20_test1007_comparison.png" alt="Controlled comparison between M0, M3, DeepLabV3+ and YOLOv8m-Seg" width="85%">
+
+*Selected performance comparison under the controlled TEST1007 evaluation protocol.*
+
+</div>
+
+The proposed M3 configuration achieved the highest F1-score/Dice and IoU among the evaluated models under this controlled test protocol.
+
+Different models exhibited distinct Precision–Recall trade-offs, highlighting the importance of evaluating both segmentation quality and application requirements.
+
+The full experimental results, component-level evaluation, uncertainty analysis, and detailed comparisons are available in the journal article.
+
+**[View the Complete Experimental Analysis](https://doi.org/10.1007/s41024-026-00900-z)**
+
+---
+
+## 6. Visual Demonstrations
+
+### Concrete Crack Detection and Instance Segmentation
+
+The framework produces instance-aware predictions that support crack localization and pixel-level mask visualization.
+
+<div align="center">
+
+<img src="assets/images/bkai_paper_2026/fig15_crack_prediction_examples.png" alt="Concrete crack detection and segmentation examples" width="85%">
+
+*Representative examples of concrete crack detection and segmentation.*
+
+</div>
+
+### Progressive Segmentation Refinement
+
+The following visualization demonstrates representative segmentation outputs across the progressive model configurations.
+
+<div align="center">
+
+<img src="assets/images/bkai_paper_2026/fig17_m0_m3_qualitative_masks.png" alt="Qualitative comparison of progressive Mask R-CNN configurations" width="85%">
+
+*Qualitative visualization of crack segmentation from M0 to M3.*
+
+</div>
+
+The complete article provides further analysis of segmentation performance, crack-mask refinement, and experimental limitations.
+
+---
+
+## 7. Skeleton-Based Crack Characterization
+
+The final stage, M4, extends the refined crack masks toward quantitative geometric characterization.
+
+The processing workflow incorporates skeleton extraction, centerline characterization, and distance-based width estimation.
+
+These operations provide image-based geometric descriptors for individual crack regions.
+
+**Important limitation:** Without a known physical scale, camera calibration, or equivalent spatial reference, the estimated crack lengths and widths are image-domain measurements rather than absolute physical dimensions.
+
+Detailed formulations and geometric characterization results are presented in the published article.
+
+---
+
+## 8. BKAI Web/App — Research Demonstration
+
+The proposed framework is associated with the **BKAI AI-Based Concrete Crack Detection and Analysis System**, demonstrating its potential application in infrastructure inspection workflows.
+
+Selected capabilities include:
+
+- Concrete crack image analysis
+- Visualization of predicted crack regions
+- Instance-level crack information
+- Image-based geometric characterization
+- Quantitative result visualization
+- Structured inspection reporting
+
+### BKAI System Workflow
+
+<div align="center">
+
+<img src="assets/images/bkai_paper_2026/fig21_bkai_web_workflow.png" alt="BKAI AI-based concrete crack detection and analysis workflow" width="85%">
+
+*Overview of the BKAI research demonstration and inspection-oriented analysis workflow.*
+
+</div>
+
+### Related Research Resources
+
+- **Research Website:** [BKAI Website](https://bkai.b12sites.com/index)
+- **AI Application Repository:** [BKAI AI App](https://github.com/ndtnguyen260696/bkai-ai-app)
+- **Research Dataset:** [Roboflow Concrete Crack Dataset](https://universe.roboflow.com/thanh-nguyen-ws5r9/concrete-crack-dfd3i)
+- **Published Article:** [Springer Nature](https://doi.org/10.1007/s41024-026-00900-z)
+
+The BKAI interface represents a research-oriented demonstration. Its quantitative outputs should be interpreted according to the geometric assumptions and limitations described in the publication.
+
+---
+
+## 9. Source Code and Reproducibility
+
+This repository accompanies the published research and contains supporting code and project resources.
+
+The research employs a Mask R-CNN architecture with a ResNet-50-FPN backbone, developed using the PyTorch and Detectron2 ecosystem.
+
+### Repository Access
+
+```bash
+git clone https://github.com/ndtnguyen260696/BKAI-Model-Mask-R-CNN.git
+cd BKAI-Model-Mask-R-CNN
+```
+
+The availability of complete training configurations, model checkpoints, dependencies, and executable evaluation scripts should be verified from the repository contents.
+
+The presence of research code does not by itself guarantee full reproduction of the published experiments.
+
+For methodological details, model configurations, experimental datasets, and evaluation procedures, refer to the journal article.
+
+---
+
+## 10. Publication and Citation
+
+### Published Research Article
+
+**Nguyen, D.-T., Tran, N.-Q., & Tran, D.-H. (2026).**
+
+An integrated mask R-CNN framework for concrete crack segmentation and skeleton-based quantification in automated infrastructure inspection.
+
+*Journal of Building Pathology and Rehabilitation, 11*, Article 228.
 
 **DOI:** https://doi.org/10.1007/s41024-026-00900-z
+
+### BibTeX
+
+If this research contributes to your academic or engineering work, please cite the published article:
 
 ```bibtex
 @article{Nguyen2026IntegratedMaskRCNN,
@@ -93,14 +268,57 @@ For an implementation overview, browse the repository's `Model/`, `notebooks/`, 
   year    = {2026},
   volume  = {11},
   pages   = {228},
-  doi     = {10.1007/s41024-026-00900-z}
+  doi     = {10.1007/s41024-026-00900-z},
+  url     = {https://doi.org/10.1007/s41024-026-00900-z}
 }
 ```
 
-## Publication rights and acknowledgments
+---
 
-Please consult the Springer Nature publication agreement before redistributing the publisher-formatted PDF or journal figures. Repository code and other assets may have different applicable licenses; refer to the actual `LICENSE` file and source attribution.
+## 11. Research Scope and Publication Rights
+
+The repository is intended to support research visibility, technical understanding, and access to associated implementation resources.
+
+The complete scientific methodology, experimental findings, and discussion are contained in the peer-reviewed publication.
+
+Any reuse or redistribution of journal-formatted figures, published material, datasets, or software should comply with the applicable publisher agreements and respective licenses.
+
+The repository's software license, where applicable, should be consulted separately from the journal publication rights.
 
 ---
 
-**Interested in the methodology, experiments, and scientific discussion? [Read the full Springer Nature article](https://doi.org/10.1007/s41024-026-00900-z).**
+## 12. Contact and Academic Affiliation
+
+**Dat-Thanh Nguyen**
+
+Faculty of Civil Engineering  
+Ho Chi Minh City University of Technology (HCMUT)  
+Vietnam National University Ho Chi Minh City  
+Vietnam
+
+**Academic Email:** ndthanh.sdh231@hcmut.edu.vn
+
+**Research Interests:**
+- Deep Learning and Computer Vision
+- Concrete Crack Segmentation
+- Structural Health Monitoring
+- Automated Infrastructure Inspection
+- AI Applications in Civil Engineering
+
+---
+
+<div align="center">
+
+### Read the Full Published Research
+
+For detailed methodology, mathematical formulations, complete experimental results, and scientific discussion:
+
+### [An integrated mask R-CNN framework for concrete crack segmentation and skeleton-based quantification in automated infrastructure inspection](https://doi.org/10.1007/s41024-026-00900-z)
+
+**Journal of Building Pathology and Rehabilitation · Springer Nature · 2026**
+
+---
+
+*Research Showcase | BKAI Mask R-CNN Framework*
+
+</div>
